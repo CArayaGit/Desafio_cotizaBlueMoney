@@ -1,6 +1,6 @@
 
 const params = process.argv.slice(2)
-console.log(params);
+
 module.exports = params;
 
 const child_process = require('child_process');
