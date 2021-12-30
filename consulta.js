@@ -1,10 +1,12 @@
 //obtener datos usuario por terminal
-const params = process.argv.slice(2)
+//const params = process.argv.slice(2)
+const params = require('./ejecutar.js');
 const nombreArchivo = params[0];
-const moneda = params[1];
-const valor = params[2];
+const extension = params[1];
+const moneda = params[2];
+const valor = params[3];
 
-
+console.log(valor);
 
 const https = require('https');
 const url = 'https://mindicador.cl/api';
@@ -19,9 +21,27 @@ https
 
         resp.on('end', () => {
             const datosApi = JSON.parse(data)
+            //crearArchivo(data);
             //console.log(datosApi[moneda].valor)
             //console.log(datosApi[moneda].fecha)
-            console.log(Number(valor) * Number(datosApi[moneda].valor));
+            //console.log(Number(valor) * Number(datosApi[moneda].valor));
+            
+            const crearArchivo = (datos) => {
+                const fs = require('fs');
+                const texto = `
+                A la fecha: ${datosApi[moneda].fecha}
+                Fue realizada cotización con los siguientes datos:
+                Cantidad de pesos a convertir: ${valor} pesos
+                Convertido a "${moneda}" da un total de:
+                ${Number(valor) * Number(datosApi[moneda].valor)}
+                `;
+            
+                fs.writeFile(`${nombreArchivo+extension}`, texto, 'utf-8', () => {
+                    console.log('Cotización generada')
+                })
+            };
+            crearArchivo();
+            
         })
 
     })
@@ -29,10 +49,11 @@ https
     .on('error', err => console.log(err.message));
 
 
-//console.log(Number(valor) * Number(resultado[moneda].valor));
 
-    /*
+
+
 //Crear archivo
+/*
 const crearArchivo = (valor) => {
     const fs = require('fs');
     const texto = `
@@ -48,3 +69,4 @@ const crearArchivo = (valor) => {
     })
 };
 */
+
