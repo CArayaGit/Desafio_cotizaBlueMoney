@@ -1,11 +1,13 @@
 //obtener datos usuario por terminal
-child_process
-//const params = process.argv.slice(2)
-const params = require('./ejecutar.js');
+
+const params = process.argv.slice(2)
 const nombreArchivo = params[0];
 const extension = params[1];
 const moneda = params[2];
 const valor = params[3];
+
+//const params = require('./ejecutar.js');
+
 
 
 const https = require('https');

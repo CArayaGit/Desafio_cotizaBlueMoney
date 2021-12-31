@@ -1,0 +1,7 @@
+
+                A la fecha: 2021-12-30T03:00:00.000Z
+                Fue realizada cotización con los siguientes datos:
+                Cantidad de pesos a convertir: $ 640000 pesos
+                Convertido a "dolar" da un total de: 
+                $ 752.72
+                
